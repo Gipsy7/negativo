@@ -23,6 +23,8 @@ class MyHomePage extends StatelessWidget {
                          Transaction(id: '3', title: 'Mensalidade escola', value: 300.0, date: DateTime.now()),
                         ];
 
+  final _baseColor = const Color.fromARGB(255, 216, 19, 95);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,6 @@ class MyHomePage extends StatelessWidget {
         title: Text('Negativo'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children:<Widget>[
           Container(
@@ -51,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.red,
+                          color: _baseColor,
                           width: 2,
                         ),
                       ),
@@ -61,7 +62,7 @@ class MyHomePage extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.red,
+                          color: _baseColor,
                         ),
                       ),
                     ),
@@ -82,6 +83,30 @@ class MyHomePage extends StatelessWidget {
                     ],)
         ]));
             }).toList(),
+          ),
+          Card(
+            elevation: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Título',
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Valor (R\$)',
+                    ),
+                  ),
+                  TextButton(onPressed:   (){},
+                    child: Text('Adicionar transação', style: TextStyle(color: _baseColor),
+                    ),
+                  ),
+                ]
+              ),
+            )
           )
         ],
       )
