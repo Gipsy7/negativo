@@ -50,16 +50,34 @@ class MyHomePage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.black,
+                          color: Colors.red,
                           width: 2,
                         ),
                       ),
                       padding: EdgeInsets.all(10),
-                      child: Text(tr.value.toString()),
+                      child: Text(
+                        tr.value.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
-                    Column(children: <Widget>[
-                      Text(tr.title.toString()),
-                      Text(tr.date.toString()),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                      Text(tr.title.toString(),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(tr.date.toString(),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
                     ],)
         ]));
             }).toList(),
