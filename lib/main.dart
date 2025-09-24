@@ -18,6 +18,9 @@ class Negativo extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
 
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [Transaction(id: '1', title: 'Conta de Luz', value: 100.0, date: DateTime.now()),
                          Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
                          Transaction(id: '3', title: 'Mensalidade escola', value: 300.0, date: DateTime.now()),
@@ -91,16 +94,21 @@ class MyHomePage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextField(
+                    controller: titleController,
                     decoration: InputDecoration(
                       labelText: 'Título',
                     ),
                   ),
                   TextField(
+                    controller: valueController,
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
                     ),
                   ),
-                  TextButton(onPressed:   (){},
+                  TextButton(onPressed:   (){
+                    print(titleController.text);
+                    print(valueController.text);
+                  },
                     child: Text('Adicionar transação', style: TextStyle(color: _baseColor),
                     ),
                   ),
