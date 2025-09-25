@@ -9,6 +9,17 @@ class TransactionForm extends StatelessWidget {
 
   TransactionForm(this.onSubmit);
 
+  _submitForm(){
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
+
+    if(title.isEmpty || value <= 0){
+      return;
+    }
+
+    onSubmit(title, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,20 +30,21 @@ class TransactionForm extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     controller: titleController,
+                    onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
                       labelText: 'Título',
                     ),
                   ),
                   TextField(
                     controller: valueController,
+                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
                     ),
                   ),
                   TextButton(onPressed:   (){
-                    final title = titleController.text.isEmpty ? 'Gasto aleatório' : titleController.text;
-                    final value = double.tryParse(valueController.text) ?? 0.0;
-                    onSubmit(title, value);
+                    _submitForm();
                   },
                     child: Text('Adicionar transação', style: TextStyle(color: _baseColor),
                     ),
