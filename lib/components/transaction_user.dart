@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:negativo/components/transaction_form.dart';
 import 'package:negativo/components/transaction_list.dart';
@@ -16,6 +18,20 @@ class _TransactionUserState extends State<TransactionUser> {
                          Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
                          Transaction(id: '3', title: 'Mensalidade escola', value: 300.0, date: DateTime.now()),
                         ];
+
+  _addTransaction(String title, double value){
+    final newTransaction = Transaction(
+      id: Random().nextDouble().toString(),
+      title: title,
+      value: value,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
