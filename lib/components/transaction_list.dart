@@ -11,7 +11,8 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 400,
-      child: ListView.builder(
+      child: transactions.isEmpty ? 
+      Center(child: Text('Nenhuma transaçãozilla cadastrada', style: TextStyle(color: Colors.white70))) : ListView.builder(
         itemCount: transactions.length,
         itemBuilder: (ctx, index) {
           final tr = transactions[index];

@@ -15,7 +15,7 @@ class _TransactionFormState extends State<TransactionForm> {
   final valueController = TextEditingController();
 
   _submitForm(){
-    final title = titleController.text;
+    final title = "${titleController.text}zilla";
     final value = double.tryParse(valueController.text) ?? 0.0;
 
     if(title.isEmpty || value <= 0){
@@ -37,7 +37,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     controller: titleController,
                     onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
-                      labelText: 'Título',
+                      labelText: 'Títulozilla',
                       labelStyle: TextStyle(color: Colors.white),
                       
                     ),
@@ -48,7 +48,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
-                      labelText: 'Valor (R\$)',
+                      labelText: 'Valorzilla (R\$)',
                       labelStyle: TextStyle(color: Colors.white),
                     ),
                     style: TextStyle(color: Colors.white),
@@ -56,7 +56,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   TextButton(onPressed:   (){
                     _submitForm();
                   },
-                    child: Text('Adicionar transação',style: GoogleFonts.orbitron(),),
+                    child: Text('Adicionar transaçãozilla',style: GoogleFonts.orbitron(),),
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(

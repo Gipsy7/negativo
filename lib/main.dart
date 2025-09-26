@@ -25,23 +25,21 @@ class Negativo extends StatelessWidget {
         primaryIconTheme: IconThemeData(color: Color(0xFF00B4D8)), // Ícones azul neon
         primaryTextTheme: TextTheme(
           titleLarge: TextStyle(
-            fontFamily: 'OpenSans',
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
         hintColor: Colors.white70,
-        fontFamily: 'Quicksand',
         appBarTheme: AppBarTheme(
           backgroundColor: Color(0xFF0A2342),
           foregroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF00B4D8)),
           titleTextStyle: TextStyle(
-            fontFamily: 'OpenSans',
             fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
+            fontFamily: GoogleFonts.orbitron().fontFamily,
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -72,56 +70,56 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final _transactions = [
-    Transaction(
-      id: '1',
-      title: 'Conta de Luz',
-      value: 100.0,
-      date: DateTime.now(),
-    ),
-    Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: '3',
-      title: 'Mensalidade escola',
-      value: 300.0,
-      date: DateTime.now(),
-    ),
+  final List<Transaction> _transactions = [
+    // Transaction(
+    //   id: '1',
+    //   title: 'Conta de Luz',
+    //   value: 100.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: '3',
+    //   title: 'Mensalidade escola',
+    //   value: 300.0,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   _addTransaction(String title, double value) {
@@ -162,7 +160,6 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(width: 8),
             Text(
               'Contabizilla',
-              style: GoogleFonts.orbitron(),
             ),
           ],
         ),
@@ -179,9 +176,9 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Positioned.fill(
             child: Opacity(
-              opacity: 1, // Deixa a imagem discreta
+              opacity: 0.5, // Deixa a imagem discreta
               child: Image.asset(
-                'assets/5983129.jpg', // Caminho da imagem
+                'assets/4e7971ee-9710-4dca-9990-bcf12a93b5f6.png', // Caminho da imagem
                 fit: BoxFit.cover,
               ),
             ),
