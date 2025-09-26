@@ -6,6 +6,7 @@ import 'package:negativo/components/transaction_form.dart';
 import 'package:negativo/components/transaction_list.dart';
 import 'package:negativo/models/transaction.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 main() {
   runApp(Negativo());
@@ -111,6 +112,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  final player = AudioPlayer();
+
+  void _playSound() async {
+    await player.play(AssetSource('audiocleaner_20250926_023254_file.mp3'));
+    await player.setPlaybackRate(1.5); // velocidade 1.5x
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
+              _playSound();
               _openTransactionFormModal(context);
             },
           )
@@ -163,6 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
+          _playSound();
           _openTransactionFormModal(context);
         },
       ),
