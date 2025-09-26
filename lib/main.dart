@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:negativo/components/chart.dart';
 import 'package:negativo/components/transaction_form.dart';
 import 'package:negativo/components/transaction_list.dart';
 import 'package:negativo/models/transaction.dart';
@@ -70,57 +71,65 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: '1',
-    //   title: 'Conta de Luz',
-    //   value: 100.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '3',
-    //   title: 'Mensalidade escola',
-    //   value: 300.0,
-    //   date: DateTime.now(),
-    // ),
+  final _transactions = [
+    Transaction(
+      id: '1',
+      title: 'Conta de Antiga',
+      value: 100.0,
+      date: DateTime.now().subtract(  Duration(days: 33)),
+    ),
+    Transaction(id: '2', title: 'Boleto', value: 200.0, date: DateTime.now()),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 5)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 1)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 2)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 4)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 6)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 3)),
+    ),
+    Transaction(
+      id: '3',
+      title: 'Mensalidade escola',
+      value: 300.0,
+      date: DateTime.now().subtract(  Duration(days: 5)),
+    ),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -187,11 +196,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  child: Card(child: Text('Gráfico'), elevation: 5),
-                ),
-                TransactionList(_transactions),
+                Chart(_recentTransactions),
+                TransactionList(_recentTransactions),
                 SizedBox(height: 500), // Espaço extra para rolagem
               ],
             ),
