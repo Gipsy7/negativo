@@ -4,7 +4,6 @@ import 'package:negativo/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  final _baseColor = const Color.fromARGB(255, 216, 19, 95);
 
   TransactionList(this.transactions);
   
@@ -25,9 +24,10 @@ class TransactionList extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: _baseColor,
                             width: 2,
+                            color: Color.fromARGB(255, 0, 202, 238),
                           ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         padding: EdgeInsets.all(10),
                         child: Text(
@@ -35,7 +35,7 @@ class TransactionList extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: _baseColor,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -46,11 +46,12 @@ class TransactionList extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
                         Text(DateFormat('d MMM y H:mm').format(tr.date),
                           style: TextStyle(
-                            color: Colors.grey,
+                            color: const Color.fromARGB(255, 0, 174, 255),
                           ),
                         ),
                       ],)

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double) onSubmit;
@@ -12,8 +13,6 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final titleController = TextEditingController();
   final valueController = TextEditingController();
-
-  final _baseColor = const Color.fromARGB(255, 216, 19, 95);
 
   _submitForm(){
     final title = titleController.text;
@@ -39,7 +38,10 @@ class _TransactionFormState extends State<TransactionForm> {
                     onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
                       labelText: 'Título',
+                      labelStyle: TextStyle(color: Colors.white),
+                      
                     ),
+                    style: TextStyle(color: Colors.white),
                   ),
                   TextField(
                     controller: valueController,
@@ -47,12 +49,25 @@ class _TransactionFormState extends State<TransactionForm> {
                     onSubmitted: (value) => _submitForm(),
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
+                      labelStyle: TextStyle(color: Colors.white),
                     ),
+                    style: TextStyle(color: Colors.white),
                   ),
                   TextButton(onPressed:   (){
                     _submitForm();
                   },
-                    child: Text('Adicionar transação', style: TextStyle(color: _baseColor),
+                    child: Text('Adicionar transação',style: GoogleFonts.orbitron(),),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      elevation: 5,
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ]

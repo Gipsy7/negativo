@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:negativo/components/transaction_form.dart';
 import 'package:negativo/components/transaction_list.dart';
 import 'package:negativo/models/transaction.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 main() {
   runApp(Negativo());
@@ -12,7 +13,55 @@ main() {
 class Negativo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+      theme: ThemeData(
+        textTheme: GoogleFonts.orbitronTextTheme(),
+        primaryColor: Color(0xFF0A2342), // Azul escuro Godzilla
+        primaryColorDark: Color(0xFF071A2C), // Azul quase preto
+        primaryColorLight: Color(0xFF1E5A99), // Azul mais claro
+        scaffoldBackgroundColor: Color(0xFF101C2C), // Fundo cinza/azul escuro
+        cardColor: Color(0xFF162447), // Azul neon dos espinhos
+        primaryIconTheme: IconThemeData(color: Color(0xFF00B4D8)), // Ícones azul neon
+        primaryTextTheme: TextTheme(
+          titleLarge: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        hintColor: Colors.white70,
+        fontFamily: 'Quicksand',
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF0A2342),
+          foregroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Color(0xFF00B4D8)),
+          titleTextStyle: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFF00B4D8),
+          foregroundColor: Colors.white,
+        ), colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue,
+          accentColor: Color(0xFF00B4D8),
+          backgroundColor: Color(0xFF101C2C),
+          cardColor: Color(0xFF162447),
+          errorColor: Color(0xFFB00020),
+        ).copyWith(
+          secondary: Color(0xFF00B4D8), // Azul neon para botões/flutuantes
+          onPrimary: Colors.white,
+          onSecondary: Colors.white,
+          surface: Color(0xFF162447),
+          onSurface: Colors.white,
+        ).copyWith(secondary: Color(0xFF00B4D8)),
+      ),
+    );
   }
 }
 
@@ -22,7 +71,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _baseColor = const Color.fromARGB(255, 216, 19, 95);
 
   final _transactions = [
     Transaction(
@@ -104,26 +152,60 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Negativo'),
-        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {_openTransactionFormModal(context);})],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(child: Text('Gráfico'), elevation: 5),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/ChatGPT Image 25 de set. de 2025, 21_52_13.png', // nome do arquivo do ícone
+              height: 32,
+              width: 32,
             ),
-            TransactionList(_transactions),
+            SizedBox(width: 8),
+            Text(
+              'Contabizilla',
+              style: GoogleFonts.orbitron(),
+            ),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              _openTransactionFormModal(context);
+            },
+          )
+        ],
+      ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Opacity(
+              opacity: 1, // Deixa a imagem discreta
+              child: Image.asset(
+                'assets/5983129.jpg', // Caminho da imagem
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  child: Card(child: Text('Gráfico'), elevation: 5),
+                ),
+                TransactionList(_transactions),
+                SizedBox(height: 500), // Espaço extra para rolagem
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: _baseColor,
-        foregroundColor: Colors.white,
-        onPressed: () {_openTransactionFormModal(context);},
+        onPressed: () {
+          _openTransactionFormModal(context);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
