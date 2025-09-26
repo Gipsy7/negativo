@@ -36,13 +36,17 @@ class TransactionList extends StatelessWidget {
               horizontal: 5,
             ),
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                radius: 35,
-                child: Padding(
-                  padding: const EdgeInsets.all(7),
-                  child: FittedBox(child: Text('R\$ ${tr.value.toStringAsFixed(2)}',)),
+              leading: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFF00B4D8),
+                  borderRadius: BorderRadius.circular(5),
                 ),
+                width: 90,
+                height: 40,
+                  child: Padding(
+                    padding: const EdgeInsets.all(7),
+                    child: FittedBox(child: Text('R\$ ${tr.value.toStringAsFixed(2)}',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),)),
+                  ),
               ),
               title: Text(
                 tr.title,
