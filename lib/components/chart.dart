@@ -19,25 +19,17 @@ class Chart extends StatelessWidget {
 
       double totalSum = 0.0;
 
-      // totalSum += recentTransactions.where((tx) {
-      //   return tx.date.day == weekDay.day &&
-      //       tx.date.month == weekDay.month &&
-      //       tx.date.year == weekDay.year;
-      // }).fold(0.0, (sum, tx) => sum + tx.value);
-
-      for (var i = 0; i < recentTransactions.length; i++) {
-        if (recentTransactions[i].date.day == weekDay.day &&
-            recentTransactions[i].date.month == weekDay.month &&
-            recentTransactions[i].date.year == weekDay.year) {
-          totalSum += recentTransactions[i].value;
-        }
-      }
+       totalSum += recentTransactions.where((tx) {
+         return tx.date.day == weekDay.day &&
+             tx.date.month == weekDay.month &&
+             tx.date.year == weekDay.year;
+       }).fold(0.0, (sum, tx) => sum + tx.value);
 
       return {
         'day': day,
         'value': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
     double get _weekTotalValue {

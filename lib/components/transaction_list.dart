@@ -30,47 +30,32 @@ class TransactionList extends StatelessWidget {
         itemBuilder: (ctx, index) {
           final tr = transactions[index];
           return Card(
-                  child: Row(children: <Widget>[
-                      Container(
-                        margin:EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: Color.fromARGB(255, 0, 202, 238),
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          'R\$ ${tr.value.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                        Text(tr.title.toString(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(DateFormat('d MMM y H:mm').format(tr.date),
-                          style: TextStyle(
-                            color: const Color.fromARGB(255, 0, 174, 255),
-                          ),
-                        ),
-                      ],)
-          ]));
+            elevation: 5,
+            margin: EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 5,
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                radius: 35,
+                child: Padding(
+                  padding: const EdgeInsets.all(7),
+                  child: FittedBox(child: Text('R\$ ${tr.value.toStringAsFixed(2)}',)),
+                ),
+              ),
+              title: Text(
+                tr.title,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white),
+              ),
+              subtitle: Text(
+                DateFormat('d MMM y').format(tr.date),
+                style: TextStyle(color: Colors.white70, fontSize: 12),
+              ),
+            ),
+          );
         },
+
       ),
     );
   }
