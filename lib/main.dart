@@ -151,8 +151,8 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       );
-    final availableHeight = MediaQuery.of(context).size.height - appBar.preferredSize.height- MediaQuery.of(context).padding.top;
 
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
       appBar: appBar,
@@ -185,12 +185,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              if(_showChart)
+              if(!isLandscape || _showChart)
               Expanded(
                 flex: 2,
                 child: Chart(_recentTransactions),
               ),
-              if(!_showChart)
+              if(!isLandscape || !_showChart)
               Expanded(
                 flex: 8,
                 child: TransactionList(_recentTransactions, _removeTransaction),
