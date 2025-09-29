@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:negativo/components/transaction_Item.dart';
 import 'package:negativo/models/transaction.dart';
 
