@@ -142,13 +142,23 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         actions: [
+          if(MediaQuery.of(context).orientation == Orientation.landscape)
+          IconButton(
+            icon: Icon(_showChart ? Icons.list : Icons.bar_chart),
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+          ),
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
               _playSound();
               _openTransactionFormModal(context);
             },
-          )
+          ),
+
         ],
       );
 
@@ -171,20 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Exibir Gráfico'),
-                  Switch(
-                  value: _showChart,
-                    onChanged: (value) {
-                      setState(() {
-                        _showChart = value;
-                      });
-                    },
-                  ),
-                ],
-              ),
               if(!isLandscape || _showChart)
               Expanded(
                 flex: 2,

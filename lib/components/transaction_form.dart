@@ -45,77 +45,79 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: titleController,
-              onSubmitted: (value) => _submitForm(),
-              decoration: InputDecoration(
-                labelText: 'Títulozilla',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 12),
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 10,
+        child: Padding(
+          padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10 + MediaQuery.of(context).viewInsets.bottom,),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                controller: titleController,
+                onSubmitted: (value) => _submitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Títulozilla',
+                  labelStyle: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+                style: TextStyle(color: Colors.white),
               ),
-              style: TextStyle(color: Colors.white),
-            ),
-            TextField(
-              controller: valueController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (value) => _submitForm(),
-              decoration: InputDecoration(
-                labelText: 'Valorzilla (R\$)',
-                labelStyle: TextStyle(color: Colors.white, fontSize: 12),
+              TextField(
+                controller: valueController,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                onSubmitted: (value) => _submitForm(),
+                decoration: InputDecoration(
+                  labelText: 'Valorzilla (R\$)',
+                  labelStyle: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+                style: TextStyle(color: Colors.white),
               ),
-              style: TextStyle(color: Colors.white),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Datazilla: ${selectedDate != null ? DateFormat('dd/MM/yyyy').format(selectedDate!) : 'Nenhuma data selecionada'}',
-                      style: TextStyle(color: Colors.white70, fontSize: 12, fontWeight: FontWeight.bold),
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Datazilla: ${selectedDate != null ? DateFormat('dd/MM/yyyy').format(selectedDate!) : 'Nenhuma data selecionada'}',
+                        style: TextStyle(color: Colors.white70, fontSize: 12, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: _showDatePicker,
-                    child: Text(
-                      'Selecionar data',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    TextButton(
+                      onPressed: _showDatePicker,
+                      child: Text(
+                        'Selecionar data',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      _submitForm();
+                    },
+                    child: Text('Adicionar', style: GoogleFonts.orbitron()),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Color(0xFF00B4D8),
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      elevation: 5,
+                      textStyle: TextStyle(
                         fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    _submitForm();
-                  },
-                  child: Text('Adicionar', style: GoogleFonts.orbitron()),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    backgroundColor: Color(0xFF00B4D8),
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                    elevation: 5,
-                    textStyle: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
