@@ -59,12 +59,17 @@ class TransactionList extends StatelessWidget {
               DateFormat('d MMM y').format(tr.date),
               style: TextStyle(color: Colors.white70, fontSize: 12),
             ),
-            trailing: IconButton(
+            trailing: 
+            MediaQuery.of(  context).size.width < 480 ?
+            IconButton(
               icon: Icon(Icons.delete, color: Colors.red),
               onPressed: () {
                 onRemove(tr.id);
               },
-            ),
+            ) :
+            TextButton(onPressed: () {
+              onRemove(tr.id);
+            }, child: Text('Excluir', style: TextStyle(color: Colors.red),))
           ),
         );
       },

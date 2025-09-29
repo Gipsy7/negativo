@@ -195,13 +195,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          _playSound();
-          _openTransactionFormModal(context);
-        },
-      ),
+      floatingActionButton: (!_showChart || !isLandscape)
+          ? FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                _playSound();
+                _openTransactionFormModal(context);
+              },
+            )
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
