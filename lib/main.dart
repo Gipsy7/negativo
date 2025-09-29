@@ -77,7 +77,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [];
   bool _showChart = false;
   
 
