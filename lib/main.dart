@@ -14,9 +14,6 @@ main() {
 }
 
 class Negativo extends StatelessWidget {
-
-
-
   @override
   Widget build(BuildContext context) {
     
