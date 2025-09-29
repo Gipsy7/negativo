@@ -78,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> _transactions = [];
   bool _showChart = false;
+  
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -126,6 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
   
   @override
   Widget build(BuildContext context) {
+    final bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
         title: Row(
           children: [
@@ -142,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         actions: [
-          if(MediaQuery.of(context).orientation == Orientation.landscape)
+          if(isLandscape)
           IconButton(
             icon: Icon(_showChart ? Icons.list : Icons.bar_chart),
             onPressed: () {
@@ -162,7 +165,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       );
 
-    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
       appBar: appBar,
