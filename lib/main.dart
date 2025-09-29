@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -165,10 +166,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       );
 
-
-    return Scaffold(
-      appBar: appBar,
-      body: Stack(
+    final bodypage = SafeArea(
+      child: Stack(
         children: [
           Positioned.fill(
             child: Opacity(
@@ -191,13 +190,19 @@ class _MyHomePageState extends State<MyHomePage> {
               if(!isLandscape || !_showChart)
               Expanded(
                 flex: 8,
-                child: TransactionList(_recentTransactions, _removeTransaction),
+                child: TransactionList(_transactions, _removeTransaction),
               ),
             ],
           ),
         ],
       ),
-      floatingActionButton: (!_showChart || !isLandscape)
+    );
+
+
+    return Scaffold(
+      appBar: appBar,
+      body: bodypage,
+      floatingActionButton: ((!_showChart || !isLandscape) && !Platform.isIOS)
           ? FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () {
