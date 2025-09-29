@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:negativo/components/chart.dart';
+import 'package:negativo/components/transaction_add_button.dart';
 import 'package:negativo/components/transaction_form.dart';
 import 'package:negativo/components/transaction_list.dart';
 import 'package:negativo/models/transaction.dart';
@@ -200,13 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: bodypage,
       floatingActionButton: ((!_showChart || !isLandscape) && !Platform.isIOS)
-          ? FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                _playSound();
-                _openTransactionFormModal(context);
-              },
-            )
+          ? TransactionAddButton(_openTransactionFormModal, _playSound)
           : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
