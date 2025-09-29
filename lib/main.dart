@@ -13,8 +13,12 @@ main() {
 }
 
 class Negativo extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
@@ -73,6 +77,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<Transaction> _transactions = [];
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -121,8 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    final appBar = AppBar(
         title: Row(
           children: [
             Image.asset(
@@ -133,6 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(width: 8),
             Text(
               'Contabizilla',
+              textScaler: MediaQuery.textScalerOf(context),
             ),
           ],
         ),
@@ -145,27 +150,52 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           )
         ],
-      ),
+      );
+    final availableHeight = MediaQuery.of(context).size.height - appBar.preferredSize.height- MediaQuery.of(context).padding.top;
+
+
+    return Scaffold(
+      appBar: appBar,
       body: Stack(
         children: [
           Positioned.fill(
             child: Opacity(
-              opacity: 0.5, // Deixa a imagem discreta
+              opacity: 0.5,
               child: Image.asset(
-                'assets/4e7971ee-9710-4dca-9990-bcf12a93b5f6.png', // Caminho da imagem
+                'assets/4e7971ee-9710-4dca-9990-bcf12a93b5f6.png',
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Chart(_recentTransactions),
-                TransactionList(_recentTransactions, _removeTransaction),
-                SizedBox(height: 500), // Espaço extra para rolagem
-              ],
-            ),
+          Column(
+
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Exibir Gráfico'),
+                  Switch(
+                  value: _showChart,
+                    onChanged: (value) {
+                      setState(() {
+                        _showChart = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              if(_showChart)
+              Expanded(
+                flex: 2,
+                child: Chart(_recentTransactions),
+              ),
+              if(!_showChart)
+              Expanded(
+                flex: 8,
+                child: TransactionList(_recentTransactions, _removeTransaction),
+              ),
+            ],
           ),
         ],
       ),
